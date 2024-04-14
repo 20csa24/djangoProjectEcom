@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Orders List Page</h1>
+
+    <a href="/orders/addorders/">
+        <button>Add New Order</button>
+    </a>
+
+    <!-- <form action="" method="POST">
+    {% csrf_token %}
+    {{order_form}}
+    <input type="submit" value="submit">
+
+    </form> -->
+    <table>
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Order Number</th>
+                <th>Date</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th>GST Amount</th>
+                <th>Bill Amount</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in all_orders %}
+            <tr>
+                <td>{{order.c_reference}}</td>
+                <td>{{order.p_reference}}</td>
+                <td>{{order.o_number}}</td>
+                <td>{{order.o_date}}</td>
+                <td>{{order.quantity}}</td>
+                <td>{{order.amount}}</td>
+                <td>{{order.gst_amt}}</td>
+                <td>{{order.bill_amt}}</td>
+                <td>
+                    <a href="{% url 'order_update' order.id %}">
+                        <button>Update</button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'order_delete' order.id %}">
+                        <button>Delete</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

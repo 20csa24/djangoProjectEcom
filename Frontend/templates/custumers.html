@@ -1,0 +1,39 @@
+{% extends 'base.html' %}    
+    {% block content %}
+        <h1>Custumer List</h1>
+        <a href="/orders/custumer/add/">
+            <button>Add Customers</button>
+        </a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Custumer Name</th>
+                    <th>Custumer Since</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for custumer in custumerList %}
+                    <tr>
+                        <td>{{custumer.c_name}}</td>
+                        <td>{{custumer.c_since}}</td>
+                        <td>
+                            <a href="{% url 'custumer_update' custumer.id %}">
+                                <button>Update</button>
+                            </a>
+                            
+                        </td>
+                        <td>
+                            <a href="{% url 'custumer_delete' custumer.id %}">
+                                <button>Delete</button>
+                            </a>
+                        </td>
+    
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endblock %}
+        
+    
